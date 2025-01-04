@@ -5,6 +5,7 @@ import 'package:demo/src/constants/colors.dart';
 import 'package:demo/src/constants/image_strings.dart';
 import 'package:demo/src/constants/sizes.dart';
 import 'package:demo/src/constants/text_strings.dart';
+import 'package:demo/src/features/authentication/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -50,7 +51,7 @@ class WelcomeScreen extends StatelessWidget{
                   Row(
                     children: [
                       Expanded(child: OutlinedButton(
-                          onPressed: (){},
+                          onPressed: () => Get.to(() => const LoginScreen()),
                           child: Text(tLogin)
                       ),
                       ),
