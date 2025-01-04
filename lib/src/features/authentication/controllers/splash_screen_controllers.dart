@@ -1,5 +1,4 @@
-import 'package:demo/src/features/authentication/screens/login/login_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:demo/src/features/authentication/screens/welcome/welcome_screen.dart';
 import 'package:get/get.dart';
 
 class SplashScreenController extends GetxController{
@@ -11,7 +10,7 @@ class SplashScreenController extends GetxController{
   Future startAnimation() async {
     await Future.delayed(const Duration(milliseconds: 500));
     animate.value = true;
-    await Future.delayed(const Duration(milliseconds: 500));
-    Get.to(LoginScreen());
+    await Future.delayed(const Duration(milliseconds: 5000));
+    Get.off(() => WelcomeScreen());
   }
 }

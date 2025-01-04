@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../../constants/image_strings.dart';
-import '../login/login_screen.dart';
 
 class SplashScreen extends StatelessWidget {
    SplashScreen({Key? key}) : super(key: key);
