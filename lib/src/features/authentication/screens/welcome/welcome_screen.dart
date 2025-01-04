@@ -15,7 +15,7 @@ class WelcomeScreen extends StatelessWidget{
     final isDarkMode = brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDarkMode ? tAccentColor : tBackgroundColor,
+      backgroundColor: isDarkMode ? tAccentColor : tPrimaryColor,
       body:Container(
         padding: EdgeInsets.all(tDefaultSize),
         child: Column(
