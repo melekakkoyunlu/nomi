@@ -1,6 +1,11 @@
 import 'package:demo/src/constants/sizes.dart';
 import 'package:demo/src/constants/text_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../forget_password/forget_password_mail/forget_password_mail.dart';
+import '../../forget_password/forget_password_phone/forget_password_phone.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -47,7 +52,7 @@ class LoginForm extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      isScrollControlled: true, // Enable scrolling for large content
+                      isScrollControlled: true,
                       builder: (context) => SingleChildScrollView(
                         child: Container(
                           padding: EdgeInsets.all(tDefaultSize),
@@ -63,8 +68,11 @@ class LoginForm extends StatelessWidget {
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                               const SizedBox(height: 30.0),
-                              GestureDetector(
-                                onTap: () {},
+                              GestureDetector(          //reset with email btn
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  Get.to(() => const ForgetPasswordMailScreen());
+                                },
                                 child: Container(
                                   padding: const EdgeInsets.all(20.0),
                                   decoration: BoxDecoration(
@@ -103,8 +111,11 @@ class LoginForm extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 20.0),
-                              GestureDetector(
-                                onTap: () {},
+                              GestureDetector(   //reset with phone no btn
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  Get.to(() => ForgetPasswordPhoneScreen());
+                                  },
                                 child: Container(
                                   padding: const EdgeInsets.all(20.0),
                                   decoration: BoxDecoration(

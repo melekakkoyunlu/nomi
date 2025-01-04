@@ -9,6 +9,7 @@ const String tForgetPassword = "Forget Password?";
 const String tSignInWithGoogle = "Sign in with Google";
 const String tFullName = "Full Name";
 const String tPhoneNo = "Phone Number";
+const String tNext = "Next";
 
 /* -- Splash Screen Text -- */
 const String tAppName = "NOMI";
@@ -39,7 +40,7 @@ const String tResetViaPhone = "Reset via Phone Verification." ;
 const String tForgetPhoneSubTitle = "Enter your registered phone number to reset you password";
 
 /* -- Forget Password via E-Mail Text -- */
-const String tForgetMailSubTitle = "Enter your registered E-Mail number to reset you password";
+const String tForgetMailSubTitle = "Enter your registered E-Mail to reset you password";
 
 
 /* -- Home Page Screen Text -- */
