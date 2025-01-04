@@ -7,7 +7,8 @@ const String tEmail = "E-Mail";
 const String tPassword = "Password";
 const String tForgetPassword = "Forget Password?";
 const String tSignInWithGoogle = "Sign in with Google";
-
+const String tFullName = "Full Name";
+const String tPhoneNo = "Phone Number";
 /* -- Splash Screen Text -- */
 const String tAppName = "NOMI";
 const String tAppTagLine = "Explore \nExperience \nEat";
