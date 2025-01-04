@@ -7,7 +7,10 @@ const String tLogo = "assets/images/nomi.png";
 const String tLoginScreenImage1 = "assets/images/loginScreen.png";
 
 /* -- Welcome Screen Images -- */
-const String tWelcomeScreenImage="assets/images/foody.png";
+const String tWelcomeScreenImage = "assets/images/foody.png";
+
+/* --Forget Password Images -- */
+const String tForgetPasswordImage = "assets/images/forget-password.png";
 
 /* -- Home Page Screen Images -- */
 

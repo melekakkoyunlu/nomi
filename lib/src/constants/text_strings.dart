@@ -9,6 +9,7 @@ const String tForgetPassword = "Forget Password?";
 const String tSignInWithGoogle = "Sign in with Google";
 const String tFullName = "Full Name";
 const String tPhoneNo = "Phone Number";
+
 /* -- Splash Screen Text -- */
 const String tAppName = "NOMI";
 const String tAppTagLine = "Explore \nExperience \nEat";
@@ -27,6 +28,19 @@ const String tDontHaveAnAccount = "Don't have an Account?";
 /* -- Sign Screen Text -- */
 const String tSignTitle = "Get on Board!";
 const String tSignSubTitle = "Create your profile to start explore...";
+
+/* -- Forget Password Screen Text -- */
+const String tForgetPasswordTitle = "Make Selection!";
+const String tForgetPasswordSubTitle = "Select one of the options given below to reset your password.";
+const String tResetViaEMail = "Reset via E-Mail Verification." ;
+const String tResetViaPhone = "Reset via Phone Verification." ;
+
+/* -- Forget Password via Phone Text -- */
+const String tForgetPhoneSubTitle = "Enter your registered phone number to reset you password";
+
+/* -- Forget Password via E-Mail Text -- */
+const String tForgetMailSubTitle = "Enter your registered E-Mail number to reset you password";
+
 
 /* -- Home Page Screen Text -- */
 
