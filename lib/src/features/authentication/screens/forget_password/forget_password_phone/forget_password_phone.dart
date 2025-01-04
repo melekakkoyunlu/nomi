@@ -1,9 +1,12 @@
 import 'package:demo/src/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../../common_widgets/form/form_header_widget.dart';
 import '../../../../../constants/image_strings.dart';
 import '../../../../../constants/text_strings.dart';
+import '../forget_password_otp/otp_screen.dart';
 
 class ForgetPasswordPhoneScreen extends StatelessWidget{
   const ForgetPasswordPhoneScreen({Key? key}) : super(key : key);
@@ -38,7 +41,10 @@ class ForgetPasswordPhoneScreen extends StatelessWidget{
                         ),
                       ),
                       const SizedBox(height: 20.0,),
-                      SizedBox(width: double.infinity ,child: ElevatedButton(onPressed: (){}, child: const Text(tNext))),
+                      SizedBox(width: double.infinity ,child: ElevatedButton(
+                          onPressed: (){
+                            Get.to(() => const OTPScreen());
+                          }, child: const Text(tNext))),
                     ],
                   ),
                 )

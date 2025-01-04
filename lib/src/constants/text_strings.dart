@@ -42,6 +42,10 @@ const String tForgetPhoneSubTitle = "Enter your registered phone number to reset
 /* -- Forget Password via E-Mail Text -- */
 const String tForgetMailSubTitle = "Enter your registered E-Mail to reset you password";
 
+/* -- OTP Screen Text -- */
+const String tOtpTitle = "CO\nDE";
+const String tOtpSubTitle = "Verification";
+const String tOtpMessage = "Enter the verification code sent at ";
 
 /* -- Home Page Screen Text -- */
 
