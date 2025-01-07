@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../../features/map/services/places_service.dart';
+
 class MapWidget extends StatelessWidget {
   final LatLng? userLocation;
+  final List<Place> nearbyPlaces;
 
-  MapWidget({this.userLocation});
+  MapWidget({this.userLocation, this.nearbyPlaces = const []});
 
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
       options: MapOptions(
         initialCenter: userLocation ?? LatLng(41.1173290650204, 29.003773089746943),
-        initialZoom: 11,
+        initialZoom: 14,
         interactionOptions: InteractionOptions(flags: InteractiveFlag.all),
       ),
       children: [
@@ -26,20 +29,34 @@ class MapWidget extends StatelessWidget {
 
   List<Marker> _buildMarkers() {
     List<Marker> markers = [];
+
+    // Add user location marker
     if (userLocation != null) {
       markers.add(
         Marker(
           point: userLocation!,
           width: 60,
           height: 60,
-          child: Icon(
-            Icons.location_pin,
-            size: 60,
-            color: Colors.blue,
+          child: Icon(Icons.my_location, size: 50, color: Colors.blue),
+        ),
+      );
+    }
+
+    // Add nearby places markers
+    for (var place in nearbyPlaces) {
+      markers.add(
+        Marker(
+          point: place.location,
+          width: 60,
+          height: 60,
+          child: Tooltip(
+            message: place.name,
+            child: Icon(Icons.restaurant, size: 50, color: Colors.red),
           ),
         ),
       );
     }
+
     return markers;
   }
 

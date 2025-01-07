@@ -1,0 +1,1 @@
+const String GoogleMapsPlatformAPI = "AIzaSyBC-6zogf5kEaXh1LhOrK1gIiogmkfAoN0";
