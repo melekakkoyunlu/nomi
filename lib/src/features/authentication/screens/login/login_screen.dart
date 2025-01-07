@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
                   title: tLoginTitle,
                   subTitle: tLoginSubTitle,
                 ),
-                const LoginForm(),
+                const LoginFormWidget(),
                 const LoginFooterWidget()
               ],
             ),

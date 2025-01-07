@@ -5,10 +5,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../forget_password/forget_password_mail/forget_password_mail.dart';
+import '../../forget_password/forget_password_options/forget_password_btn_widget.dart';
+import '../../forget_password/forget_password_options/forget_password_model_bottom_sheet.dart';
 import '../../forget_password/forget_password_phone/forget_password_phone.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({
+class LoginFormWidget extends StatelessWidget {
+  const LoginFormWidget({
     super.key,
   });
 
@@ -43,121 +45,12 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: tFormHeight - 20),
+              // --Forget Password Btn
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      isScrollControlled: true,
-                      builder: (context) => SingleChildScrollView(
-                        child: Container(
-                          padding: EdgeInsets.all(tDefaultSize),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                tForgetPasswordTitle,
-                                style: Theme.of(context).textTheme.headlineMedium,
-                              ),
-                              Text(
-                                tForgetPasswordSubTitle,
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                              const SizedBox(height: 30.0),
-                              GestureDetector(          //reset with email btn
-                                onTap: () {
-                                  Navigator.pop(context);
-                                  Get.to(() => const ForgetPasswordMailScreen());
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.all(20.0),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    color: Colors.grey.shade200,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.mail_outline_rounded,
-                                        size: 60.0,
-                                      ),
-                                      const SizedBox(width: 10.0),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              tEmail,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headlineSmall,
-                                            ),
-                                            Text(
-                                              tResetViaEMail,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 20.0),
-                              GestureDetector(   //reset with phone no btn
-                                onTap: () {
-                                  Navigator.pop(context);
-                                  Get.to(() => ForgetPasswordPhoneScreen());
-                                  },
-                                child: Container(
-                                  padding: const EdgeInsets.all(20.0),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    color: Colors.grey.shade200,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.mobile_friendly_rounded,
-                                        size: 60.0,
-                                      ),
-                                      const SizedBox(width: 10.0),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              tPhoneNo,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headlineSmall,
-                                            ),
-                                            Text(
-                                              tResetViaPhone,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
+                    ForgetPasswordScreen.buildShowModalBottomSheet(context);
                   },
                   child: Text(tForgetPassword),
                 ),
