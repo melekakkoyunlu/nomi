@@ -1,5 +1,6 @@
 import 'package:demo/src/constants/sizes.dart';
 import 'package:demo/src/constants/text_strings.dart';
+import 'package:demo/src/features/authentication/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -58,7 +59,7 @@ class LoginFormWidget extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed:() => Get.to(() => HomeScreen()),
                   child: Text(tLogin.toUpperCase()),
                 ),
               )
