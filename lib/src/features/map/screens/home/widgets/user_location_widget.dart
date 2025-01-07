@@ -70,7 +70,7 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
     // Check if location services are enabled
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // If location service is not enabled, return a default value or show an error
+      // If location service is not enabled, show an error or prompt user to enable it
       throw Exception("Location services are disabled.");
     }
 
@@ -79,9 +79,15 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        // If permission is denied, throw an error
+        // If permission is denied, show an error or prompt user to allow permission
         throw Exception("Location permission denied.");
       }
+    }
+
+    // Handle the case where permission is permanently denied
+    if (permission == LocationPermission.deniedForever) {
+      // Inform the user that they need to enable permission in settings
+      throw Exception("Location permission permanently denied. Please enable it from settings.");
     }
 
     // Fetch the user's current position
