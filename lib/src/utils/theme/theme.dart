@@ -1,4 +1,5 @@
 import 'package:demo/src/utils/theme/widget_themes/elevated_button_theme.dart';
+import 'package:demo/src/utils/theme/widget_themes/forget_password_btn_widget_theme.dart';
 import 'package:demo/src/utils/theme/widget_themes/outlined_button_theme.dart';
 import 'package:demo/src/utils/theme/widget_themes/text_field_theme.dart';
 import 'package:demo/src/utils/theme/widget_themes/text_theme.dart';
@@ -15,6 +16,8 @@ class NomiAppTheme{
     outlinedButtonTheme: TOutlinedButtonTheme.lightOutlinedButtonTheme,
     elevatedButtonTheme: TElevatedButtonTheme.lightElevatedButtonTheme,
     inputDecorationTheme: TTextFormFieldTheme.lightInputDecorationTheme,
+    extensions: const [ForgetPasswordButtonTheme.light],
+
   );
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
@@ -22,5 +25,7 @@ class NomiAppTheme{
     outlinedButtonTheme: TOutlinedButtonTheme.darkOutlinedButtonTheme,
     elevatedButtonTheme: TElevatedButtonTheme.darkElevatedButtonTheme,
     inputDecorationTheme: TTextFormFieldTheme.darkInputDecorationTheme,
+    extensions: const [ForgetPasswordButtonTheme.dark],
+
   );
 }
