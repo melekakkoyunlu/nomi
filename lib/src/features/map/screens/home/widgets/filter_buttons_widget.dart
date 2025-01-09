@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../../../constants/filters.dart';
 
-void showFilterPopup(BuildContext context) {
-  double selectedDistance = defaultDistance;
+Future<Map<String, dynamic>> showFilterPopup(BuildContext context) async {
+  // Seçenekler
+  final List<int> walkingTimes = [5, 10, 15]; // Dakikalar
+  int selectedTime = 5; // Varsayılan olarak 5 dakika seçili
   List<String> selectedCuisines = [];
 
-  showDialog(
+  return await showDialog(
     context: context,
     builder: (BuildContext context) {
       return StatefulBuilder(
@@ -16,23 +17,27 @@ void showFilterPopup(BuildContext context) {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Select Distance (km):"),
-                  Slider(
-                    value: selectedDistance,
-                    min: minDistance,
-                    max: maxDistance,
-                    divisions: 10,
-                    label: "${selectedDistance.toStringAsFixed(1)} km",
-                    onChanged: (value) {
-                      setState(() {
-                        selectedDistance = value;
-                      });
-                    },
+                  // Uzaklık Seçimi
+                  Text("Select Walking Time:"),
+                  Wrap(
+                    spacing: 8.0,
+                    children: walkingTimes.map((time) {
+                      return ChoiceChip(
+                        label: Text("$time min"),
+                        selected: selectedTime == time,
+                        onSelected: (isSelected) {
+                          setState(() {
+                            selectedTime = time;
+                          });
+                        },
+                      );
+                    }).toList(),
                   ),
                   SizedBox(height: 20),
+                  // Cuisine Seçimi
                   Text("Select Cuisines:"),
                   Column(
-                    children: cuisines.map((cuisine) {
+                    children: ["Italian", "Chinese", "Mexican", "Indian"].map((cuisine) {
                       return CheckboxListTile(
                         title: Text(cuisine),
                         value: selectedCuisines.contains(cuisine),
@@ -52,20 +57,25 @@ void showFilterPopup(BuildContext context) {
               ),
             ),
             actions: [
+              // Reset Tuşu
               TextButton(
                 onPressed: () {
                   setState(() {
-                    selectedDistance = defaultDistance;
+                    selectedTime = 5; // Varsayılan 5 dk
                     selectedCuisines.clear();
                   });
                 },
                 child: Text("Reset"),
               ),
+              // Apply Tuşu
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
-                  print("Selected Distance: $selectedDistance km");
-                  print("Selected Cuisines: $selectedCuisines");
+                  // Dakikaları kilometreye çevir
+                  double distance = selectedTime * 0.08; // Ortalama hız 0.08 km/dakika
+                  Navigator.of(context).pop({
+                    "distance": distance,
+                    "cuisines": selectedCuisines,
+                  });
                 },
                 child: Text("Apply"),
               ),

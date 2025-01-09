@@ -7,12 +7,18 @@ import '../../features/map/services/places_service.dart';
 class MapWidget extends StatelessWidget {
   final LatLng? userLocation;
   final List<Place> nearbyPlaces;
+  final MapController mapController;
 
-  MapWidget({this.userLocation, this.nearbyPlaces = const []});
+  MapWidget({
+    required this.mapController,
+    this.userLocation,
+    this.nearbyPlaces = const [],
+  });
 
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
+      mapController: mapController,
       options: MapOptions(
         initialCenter: userLocation ?? LatLng(41.1173290650204, 29.003773089746943),
         initialZoom: 14,
@@ -30,7 +36,6 @@ class MapWidget extends StatelessWidget {
   List<Marker> _buildMarkers() {
     List<Marker> markers = [];
 
-    // Add user location marker
     if (userLocation != null) {
       markers.add(
         Marker(
@@ -42,7 +47,6 @@ class MapWidget extends StatelessWidget {
       );
     }
 
-    // Add nearby places markers
     for (var place in nearbyPlaces) {
       markers.add(
         Marker(

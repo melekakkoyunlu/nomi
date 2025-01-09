@@ -1,10 +1,10 @@
-import 'package:demo/src/constants/api.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../../../common_widgets/map/map_widget.dart';
+import '../../../../../constants/api.dart';
+import '../../../controllers/map_controller.dart';
 import '../../../services/places_service.dart';
-
+import 'filter_buttons_widget.dart';
 
 class UserLocationWidget extends StatefulWidget {
   @override
@@ -16,6 +16,7 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
   bool _isLoading = false;
   List<Place> _nearbyPlaces = [];
   final PlacesService _placesService = PlacesService(GoogleMapsPlatformAPI);
+  final CustomMapController _customMapController = CustomMapController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,77 +25,61 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
         MapWidget(
           userLocation: _userLocation,
           nearbyPlaces: _nearbyPlaces,
+          mapController: _customMapController.mapController,
         ),
         if (_isLoading)
-          Center(child: CircularProgressIndicator()), // Loading spinner
+          Center(child: CircularProgressIndicator()),
         Positioned(
           bottom: 20,
-          right: 20,
+          left: 20,
           child: FloatingActionButton(
-            onPressed: _getUserLocationAndPlaces,
-            child: Icon(Icons.my_location),
+            onPressed: () async {
+              Map<String, dynamic>? filters = await showFilterPopup(context);
+              if (filters != null) {
+                double distance = filters["distance"];
+                List<String> cuisines = filters["cuisines"];
+                _applyFilters(distance, cuisines);
+              }
+            },
+            child: Icon(Icons.filter_alt),
           ),
         ),
       ],
     );
   }
 
-  Future<void> _getUserLocationAndPlaces() async {
+  Future<void> _applyFilters(double distance, List<String> cuisines) async {
+    if (_userLocation == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("User location is not available.")),
+      );
+      return;
+    }
+
     setState(() {
       _isLoading = true;
     });
 
     try {
-      // Fetch user location
-      LatLng location = await _fetchUserLocation();
-
-      // Fetch nearby places
-      List<Place> places = await _placesService.fetchNearbyPlaces(location, 'restaurant');
+      // Yakındaki yerleri filtrele
+      List<Place> filteredPlaces = await _placesService.fetchNearbyPlaces(
+        _userLocation!,
+        'restaurant',
+        distance: distance,
+        cuisines: cuisines,
+      );
 
       setState(() {
-        _userLocation = location;
-        _nearbyPlaces = places;
+        _nearbyPlaces = filteredPlaces;
       });
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Error fetching data: $e"),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error fetching filtered data: $e")),
+      );
     } finally {
       setState(() {
         _isLoading = false;
       });
     }
   }
-
-  Future<LatLng> _fetchUserLocation() async {
-    // Check if location services are enabled
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      // If location service is not enabled, show an error or prompt user to enable it
-      throw Exception("Location services are disabled.");
-    }
-
-    // Request permission to access location
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        // If permission is denied, show an error or prompt user to allow permission
-        throw Exception("Location permission denied.");
-      }
-    }
-
-    // Handle the case where permission is permanently denied
-    if (permission == LocationPermission.deniedForever) {
-      // Inform the user that they need to enable permission in settings
-      throw Exception("Location permission permanently denied. Please enable it from settings.");
-    }
-
-    // Fetch the user's current position
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
-    // Convert the position into LatLng
-    return LatLng(position.latitude, position.longitude);
-  }
-
 }

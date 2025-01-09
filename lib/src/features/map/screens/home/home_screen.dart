@@ -31,12 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-              icon: Icon(Icons.filter_alt),
-              onPressed: () {
-                showFilterPopup(context);
-              },
-          ),
+
         ],
       ),
       body: _screens[_selectedIndex],
