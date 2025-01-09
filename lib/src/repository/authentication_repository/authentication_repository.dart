@@ -1,3 +1,4 @@
+import 'package:demo/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:demo/src/features/authentication/screens/welcome/welcome_screen.dart';
 import 'package:demo/src/features/map/screens/home/home_screen.dart';
 import 'package:demo/src/repository/authentication_repository/exceptions/signup_email_password_failure.dart';
@@ -20,7 +21,7 @@ class AuthenticationRepository extends GetxController{
   }
 
   _setInitialScreen(User? user){
-    user == null ? Get.offAll(()=> const WelcomeScreen()) : Get.offAll(() => HomeScreen());
+    user == null ? Get.offAll(()=> SplashScreen()) : Get.offAll(() => HomeScreen());
   }
 
   Future<void> createUserWithEmailAndPassword(String email, String password) async{
