@@ -48,7 +48,7 @@ const String tOtpSubTitle = "Verification";
 const String tOtpMessage = "Enter the verification code sent at ";
 
 /* -- Home Page Screen Text -- */
-
+const String tHomeScreenName= "Home Screen";
 
 
 /* -- Profile Screen Text -- */
