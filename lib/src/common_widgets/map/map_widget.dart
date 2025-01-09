@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../../features/map/controllers/map_controller.dart';
 import '../../features/map/services/places_service.dart';
 
 class MapWidget extends StatelessWidget {
   final LatLng? userLocation;
   final List<Place> nearbyPlaces;
+  final CustomMapController customMapController;
 
-  MapWidget({this.userLocation, this.nearbyPlaces = const []});
+  MapWidget({required this.customMapController ,this.userLocation, this.nearbyPlaces = const []});
 
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
+      mapController: customMapController.mapController,
       options: MapOptions(
         initialCenter: userLocation ?? LatLng(41.1173290650204, 29.003773089746943),
         initialZoom: 14,

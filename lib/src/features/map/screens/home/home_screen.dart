@@ -1,5 +1,3 @@
-import 'package:demo/src/constants/text_strings.dart';
-import 'package:demo/src/features/map/screens/home/widgets/filter_buttons_widget.dart';
 import 'package:demo/src/features/map/screens/home/widgets/user_location_widget.dart';
 import 'package:demo/src/features/other/screens/bookmarks/bookmarks_screen.dart';
 import 'package:demo/src/features/other/screens/profile/profile_screen.dart';
@@ -31,12 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-              icon: Icon(Icons.filter_alt),
-              onPressed: () {
-                showFilterPopup(context);
-              },
-          ),
+
         ],
       ),
       body: _screens[_selectedIndex],

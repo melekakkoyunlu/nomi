@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../../../common_widgets/map/map_widget.dart';
+import '../../../controllers/map_controller.dart';
 import '../../../services/places_service.dart';
 
 
@@ -16,6 +17,7 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
   bool _isLoading = false;
   List<Place> _nearbyPlaces = [];
   final PlacesService _placesService = PlacesService(GoogleMapsPlatformAPI);
+  final CustomMapController _customMapController = CustomMapController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
         MapWidget(
           userLocation: _userLocation,
           nearbyPlaces: _nearbyPlaces,
+          customMapController: _customMapController,
         ),
         if (_isLoading)
           Center(child: CircularProgressIndicator()), // Loading spinner
@@ -33,6 +36,14 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
           child: FloatingActionButton(
             onPressed: _getUserLocationAndPlaces,
             child: Icon(Icons.my_location),
+          ),
+        ),
+        Positioned(
+          bottom: 20,
+          left: 20,
+          child: FloatingActionButton(
+            onPressed: _filterPlaces,
+            child: Icon(Icons.filter_alt),
           ),
         ),
       ],
@@ -47,6 +58,8 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
     try {
       // Fetch user location
       LatLng location = await _fetchUserLocation();
+
+      _customMapController.moveToLocation(location.latitude, location.longitude, 14);
 
       // Fetch nearby places
       List<Place> places = await _placesService.fetchNearbyPlaces(location, 'restaurant');
@@ -95,6 +108,9 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
 
     // Convert the position into LatLng
     return LatLng(position.latitude, position.longitude);
+  }
+  Future<void> _filterPlaces() async {
+
   }
 
 }
