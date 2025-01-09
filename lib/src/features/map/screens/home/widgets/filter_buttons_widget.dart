@@ -1,71 +1,78 @@
 import 'package:flutter/material.dart';
+import '../../../../../constants/filters.dart';
 
-class FilterButtons extends StatelessWidget {
-  final List<FilterData> filters;
+void showFilterPopup(BuildContext context) {
+  double selectedDistance = defaultDistance;
+  List<String> selectedCuisines = [];
 
-  FilterButtons({required this.filters});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: filters.map((filter) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: FilterButton(label: filter.label, color: _getColorForLabel(filter.label)),
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return StatefulBuilder(
+        builder: (context, setState) {
+          return AlertDialog(
+            title: Text("Filter Options"),
+            content: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Select Distance (km):"),
+                  Slider(
+                    value: selectedDistance,
+                    min: minDistance,
+                    max: maxDistance,
+                    divisions: 10,
+                    label: "${selectedDistance.toStringAsFixed(1)} km",
+                    onChanged: (value) {
+                      setState(() {
+                        selectedDistance = value;
+                      });
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  Text("Select Cuisines:"),
+                  Column(
+                    children: cuisines.map((cuisine) {
+                      return CheckboxListTile(
+                        title: Text(cuisine),
+                        value: selectedCuisines.contains(cuisine),
+                        onChanged: (bool? value) {
+                          setState(() {
+                            if (value == true) {
+                              selectedCuisines.add(cuisine);
+                            } else {
+                              selectedCuisines.remove(cuisine);
+                            }
+                          });
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    selectedDistance = defaultDistance;
+                    selectedCuisines.clear();
+                  });
+                },
+                child: Text("Reset"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  print("Selected Distance: $selectedDistance km");
+                  print("Selected Cuisines: $selectedCuisines");
+                },
+                child: Text("Apply"),
+              ),
+            ],
           );
-        }).toList(),
-      ),
-    );
-  }
-
-  // Renk belirlemek için bir yardımcı fonksiyon
-  Color _getColorForLabel(String label) {
-    switch (label) {
-      case 'American':
-        return Colors.red;
-      case 'Burger':
-        return Colors.blue;
-      case 'Other':
-        return Colors.black;
-      default:
-        return Colors.grey; // Varsayılan renk
-    }
-  }
-}
-
-class FilterButton extends StatelessWidget {
-  final String label;
-  final Color color;
-
-  FilterButton({required this.label, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      ),
-      onPressed: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Filter applied: $label")),
-        );
-      },
-      child: Text(
-        label,
-        style: TextStyle(color: Colors.white),
-      ),
-    );
-  }
-}
-
-class FilterData {
-  final String label;
-
-  FilterData({required this.label});
+        },
+      );
+    },
+  );
 }

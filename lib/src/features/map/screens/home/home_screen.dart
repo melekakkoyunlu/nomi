@@ -29,7 +29,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              icon: Icon(Icons.filter_alt),
+              onPressed: () {
+                showFilterPopup(context);
+              },
+          ),
+        ],
+      ),
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBarWidget(
         selectedIndex: _selectedIndex,
