@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:demo/src/constants/colors.dart';
-
-import 'package:flutter/material.dart';
 
 class ForgetPasswordButtonTheme extends ThemeExtension<ForgetPasswordButtonTheme> {
   final Color? backgroundColor;

@@ -3,12 +3,8 @@ import 'package:demo/src/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
 import '../../../../map/screens/home/home_screen.dart';
-import '../../forget_password/forget_password_mail/forget_password_mail.dart';
-import '../../forget_password/forget_password_options/forget_password_btn_widget.dart';
 import '../../forget_password/forget_password_options/forget_password_model_bottom_sheet.dart';
-import '../../forget_password/forget_password_phone/forget_password_phone.dart';
 
 class LoginFormWidget extends StatelessWidget {
   const LoginFormWidget({
