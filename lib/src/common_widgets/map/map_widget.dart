@@ -40,7 +40,7 @@ class _MapWidgetState extends State<MapWidget> {
   }
 
   void _showPlaceDetails(BuildContext context, Place place) async {
-    final placesService = FetchService.PlacesService(GoogleMapsPlatformAPI); // Google Places Details için
+    final placesService = FetchService.PlacesService(GoogleMapsPlatformAPI);
     try {
       final details = await placesService.fetchPlaceDetails(place.id);
 

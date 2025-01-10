@@ -1,3 +1,4 @@
+import 'package:demo/src/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import '../../../map/models/place.dart';
 
@@ -9,9 +10,9 @@ class BookmarksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Bookmarks')),
+      appBar: AppBar(title: const Text(tBookmarks)),
       body: bookmarks.isEmpty
-          ? const Center(child: Text('No bookmarks added.'))
+          ? const Center(child: Text(tNoBookmark))
           : ListView.builder(
         itemCount: bookmarks.length,
         itemBuilder: (context, index) {
