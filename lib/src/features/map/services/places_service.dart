@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
+import '../models/place.dart';
 
 class PlacesService {
   final String apiKey;
@@ -25,20 +26,5 @@ class PlacesService {
     } else {
       throw Exception('Failed to fetch places');
     }
-  }
-}
-
-class Place {
-  final String name;
-  final LatLng location;
-
-  Place({required this.name, required this.location});
-
-  factory Place.fromJson(Map<String, dynamic> json) {
-    final location = json['geometry']['location'];
-    return Place(
-      name: json['name'],
-      location: LatLng(location['lat'], location['lng']),
-    );
   }
 }
