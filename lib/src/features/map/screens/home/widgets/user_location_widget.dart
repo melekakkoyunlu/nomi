@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../../../common_widgets/map/map_widget.dart';
 import '../../../controllers/map_controller.dart';
+import '../../../models/place.dart';
 import '../../../services/places_service.dart';
 
 
