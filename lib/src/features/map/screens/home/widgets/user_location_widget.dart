@@ -7,8 +7,11 @@ import '../../../controllers/map_controller.dart';
 import '../../../models/place.dart';
 import '../../../services/places_service.dart';
 
-
 class UserLocationWidget extends StatefulWidget {
+  final Function(Place) onAddToBookmarks; // Callback for adding bookmarks
+
+  UserLocationWidget({required this.onAddToBookmarks});
+
   @override
   _UserLocationWidgetState createState() => _UserLocationWidgetState();
 }
@@ -28,6 +31,7 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
           userLocation: _userLocation,
           nearbyPlaces: _nearbyPlaces,
           customMapController: _customMapController,
+          onAddToBookmarks: widget.onAddToBookmarks, // Pass callback to MapWidget
         ),
         if (_isLoading)
           Center(child: CircularProgressIndicator()), // Loading spinner
@@ -84,7 +88,6 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
     // Check if location services are enabled
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // If location service is not enabled, show an error or prompt user to enable it
       throw Exception("Location services are disabled.");
     }
 
@@ -93,25 +96,21 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        // If permission is denied, show an error or prompt user to allow permission
         throw Exception("Location permission denied.");
       }
     }
 
-    // Handle the case where permission is permanently denied
     if (permission == LocationPermission.deniedForever) {
-      // Inform the user that they need to enable permission in settings
       throw Exception("Location permission permanently denied. Please enable it from settings.");
     }
 
     // Fetch the user's current position
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
 
-    // Convert the position into LatLng
     return LatLng(position.latitude, position.longitude);
   }
+
   Future<void> _filterPlaces() async {
-
+    // Placeholder for filtering logic
   }
-
 }

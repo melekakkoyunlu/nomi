@@ -7,15 +7,15 @@ import '../../features/map/models/place.dart';
 import 'package:demo/src/features/map/services/fetch_place_details_service.dart' as FetchService;
 import 'package:demo/src/features/map/services/places_service.dart' as NearbyService;
 
-
-
 class MapWidget extends StatefulWidget {
   final LatLng? userLocation;
   final List<Place> nearbyPlaces;
   final CustomMapController customMapController;
+  final Function(Place) onAddToBookmarks; // Added callback parameter
 
   const MapWidget({
     required this.customMapController,
+    required this.onAddToBookmarks, // Make it required
     this.userLocation,
     this.nearbyPlaces = const [],
     Key? key,
@@ -26,19 +26,6 @@ class MapWidget extends StatefulWidget {
 }
 
 class _MapWidgetState extends State<MapWidget> {
-  final List<Place> bookmarks = [];
-
-  void _addBookmark(Place place) {
-    if (!bookmarks.contains(place)) {
-      setState(() {
-        bookmarks.add(place);
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('${place.name} added to bookmarks')),
-      );
-    }
-  }
-
   void _showPlaceDetails(BuildContext context, Place place) async {
     final placesService = FetchService.PlacesService(GoogleMapsPlatformAPI);
     try {
@@ -70,7 +57,7 @@ class _MapWidgetState extends State<MapWidget> {
           actions: [
             TextButton(
               onPressed: () {
-                _addBookmark(place);
+                widget.onAddToBookmarks(place); // Use the callback to add bookmark
                 Navigator.pop(context);
               },
               child: const Text('Add to Bookmarks'),
@@ -137,7 +124,7 @@ class _MapWidgetState extends State<MapWidget> {
             onTap: () => _showPlaceDetails(context, place),
             child: Tooltip(
               message: place.name,
-              child: Icon(Icons.restaurant, size: 50, color: Colors.red),
+              child: Icon(Icons.fastfood_outlined , size: 30, color: Colors.deepPurple),
             ),
           ),
         ),
