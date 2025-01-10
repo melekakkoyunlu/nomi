@@ -10,6 +10,9 @@ const String tSignInWithGoogle = "Sign in with Google";
 const String tFullName = "Full Name";
 const String tPhoneNo = "Phone Number";
 const String tNext = "Next";
+const String tHome = "Home";
+const String tProfile = "Profile";
+const String tBookmarks = "Bookmarks";
 
 /* -- Splash Screen Text -- */
 const String tAppName = "NOMI";
@@ -56,3 +59,4 @@ const String tHomeScreenName= "Home Screen";
 
 
 /* -- Bookmarks Screen Text -- */
+const String tNoBookmark = "No bookmarks added.";

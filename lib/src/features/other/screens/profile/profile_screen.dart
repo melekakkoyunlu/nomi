@@ -1,3 +1,4 @@
+import 'package:demo/src/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -6,7 +7,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Profile Screen', style: TextStyle(fontSize: 24)),
+      child: Text(tProfile, style: TextStyle(fontSize: 24)),
     );
   }
 }
