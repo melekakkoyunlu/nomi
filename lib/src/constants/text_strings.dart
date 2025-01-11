@@ -55,6 +55,19 @@ const String tHomeScreenName= "Home Screen";
 
 
 /* -- Profile Screen Text -- */
+const String tEditProfile = "Edit Profile";
+const String tLogoutDialogHeading = "Logout";
+const String tProfileHeading = "Nomi";
+const String tProfileSubHeading = "nomi@nomi.com";
+
+// -- Menu
+const String tMenu2 = "Logout";
+const String tMenu1 = "Information";
+
+// -- Update Profile Screen - Text
+const String tDelete = "Delete";
+const String tJoined = "Joined";
+const String tJoinedAt = "3 January 2025";
 
 
 

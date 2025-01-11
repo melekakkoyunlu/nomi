@@ -12,7 +12,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
   google_fonts: ^6.2.1
   flutter_native_splash: ^2.4.4
   get: ^4.6.5
@@ -27,6 +26,9 @@ dependencies:
   http: ^1.2.2
   firebase_core: ^3.10.0
   firebase_auth: ^5.4.0
+  ## -- ICON PACKAGES
+  cupertino_icons: ^1.0.2
+  line_awesome_flutter: ^2.0.0
 
 dev_dependencies:
   flutter_test:
