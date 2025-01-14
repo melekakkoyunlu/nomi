@@ -17,8 +17,12 @@ const String tForgetPasswordImage = "assets/images/forget-password.png";
 
 
 /* -- Profile Screen Images -- */
-const String tProfileImage = "assets/images/profile1.png";
-
+String tProfileImage1 = "assets/images/avatar1.png";
+String tProfileImage2 = "assets/images/avatar2.png";
+String tProfileImage3 = "assets/images/avatar3.png";
+String tProfileImage4 = "assets/images/avatar4.png";
+String tProfileImage5 = "assets/images/avatar5.png";
+String tProfileImage6 = "assets/images/avatar6.png";
 
 
 /* -- Bookmarks Screen Images -- */
