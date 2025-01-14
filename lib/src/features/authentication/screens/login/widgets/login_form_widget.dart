@@ -2,7 +2,6 @@ import 'package:demo/src/constants/sizes.dart';
 import 'package:demo/src/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../map/screens/home/home_screen.dart';
 import '../../../controllers/login_controller.dart';
 import '../../forget_password/forget_password_options/forget_password_model_bottom_sheet.dart';
 
