@@ -17,7 +17,7 @@ const String tForgetPasswordImage = "assets/images/forget-password.png";
 
 
 /* -- Profile Screen Images -- */
-const String tProfileImage = "assets/images/tadic.png";
+const String tProfileImage = "assets/images/profile1.png";
 
 
 
