@@ -9,7 +9,7 @@ import 'package:demo/src/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'update_profile_screen.dart';
 import 'package:get/get.dart';
-import 'profile_information.dart';
+import '../../../../repository/authentication_repository/authentication_repository.dart';
 
 
 class ProfileScreen extends StatelessWidget {
@@ -37,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
                     width: 120,
                     height: 120,
                     child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100), child: const Image(image: AssetImage(tProfileImage))),
+                        borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage2))),
                   ),
                   Positioned(
                     bottom: 0,
@@ -46,18 +46,125 @@ class ProfileScreen extends StatelessWidget {
                       width: 35,
                       height: 35,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: tPrimaryColor),
-                      child: const Icon(
+                      child: IconButton(onPressed: (){
+                        showDialog(
+                          context: context,
+                          barrierDismissible: true, // Tıklayınca kapatılabilir
+                          builder: (BuildContext context) {
+                            return Center(
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                padding: EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black26,
+                                      blurRadius: 10,
+                                      offset: Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      "Modern Popup",
+                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      "Bu, tamamen özelleştirilmiş bir popup.",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+
+                                          width: 120,
+                                          height: 120,
+                                          child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage1))),
+                                        ),
+                                        SizedBox(width: 20),
+                                        SizedBox(
+                                          width: 120,
+                                          height: 120,
+                                          child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage2))),
+                                        ),
+                                      ],
+                                    ),
+
+                                    SizedBox(height: 20),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+
+                                          width: 120,
+                                          height: 120,
+                                          child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage3))),
+                                        ),
+                                        SizedBox(width: 20),
+                                        SizedBox(
+                                          width: 120,
+                                          height: 120,
+                                          child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage4))),
+                                        ),
+                                      ],
+                                    ),
+
+                                    SizedBox(height: 20),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+
+                                          width: 120,
+                                          height: 120,
+                                          child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage5))),
+                                        ),
+                                        SizedBox(width: 20),
+                                        SizedBox(
+                                          width: 120,
+                                          height: 120,
+                                          child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage6))),
+                                        ),
+                                      ],
+                                    ),
+
+                                    SizedBox(height: 20),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text("Kapat"),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      }, icon: const Icon(
                         LineAwesomeIcons.alternate_pencil,
                         color: Colors.black,
                         size: 20,
-                      ),
+                      ),)
+
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 10),
               Text(tProfileHeading, style: Theme.of(context).textTheme.headlineMedium),
-              Text(tProfileSubHeading, style: Theme.of(context).textTheme.bodyMedium),
               const SizedBox(height: 20),
 
               /// -- BUTTON
@@ -75,8 +182,119 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: 10),
 
               /// -- MENU
-              ProfileMenuWidget(title: "Settings", icon: LineAwesomeIcons.cog, onPress: () => Get.to(() => const UpdateProfileScreen())),
-              ProfileMenuWidget(title: "Information", icon: LineAwesomeIcons.info, onPress: () => Get.to(() => const ProfileInformationScreen())),
+              ProfileMenuWidget(title: "Settings", icon: LineAwesomeIcons.cog, onPress: () {
+                showDialog(
+                  context: context,
+                  barrierDismissible: true, // Tıklayınca kapatılabilir
+                  builder: (BuildContext context) {
+                    return Center(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 10,
+                              offset: Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "Settings",
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 5),
+
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ListTile(
+                                title: const Text('Dark Mode'),
+                                trailing: Switch(value: true, onChanged: (v){}),
+                              ),
+                            ],
+                          ),
+
+                            SizedBox(height: 20),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("Close"),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }),
+              ProfileMenuWidget(title: "Information", icon: LineAwesomeIcons.info, onPress: () {
+                showDialog(
+                  context: context,
+                  barrierDismissible: true, // Tıklayınca kapatılabilir
+                  builder: (BuildContext context) {
+                    return Center(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 10,
+                              offset: Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+
+                            SizedBox(
+                              width: 120,
+                              height: 120,
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage1))),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Nomi Nomi",
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "nomi@nomi.com",
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "+9055555555555",
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 20),
+
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("Close"),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }),
               const Divider(),
               const SizedBox(height: 10),
               ProfileMenuWidget(
@@ -84,7 +302,7 @@ class ProfileScreen extends StatelessWidget {
                   icon: LineAwesomeIcons.alternate_sign_out,
                   textColor: Colors.red,
                   endIcon: false,
-                  onPress: (){} /*{
+                  onPress: (){
                     Get.defaultDialog(
                       title: "LOGOUT",
                       titleStyle: const TextStyle(fontSize: 20),
@@ -101,7 +319,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       cancel: OutlinedButton(onPressed: () => Get.back(), child: const Text("No")),
                     );
-                  }*/),
+                  }),
             ],
           ),
         ),
