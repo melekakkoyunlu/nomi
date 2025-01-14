@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../../constants/text_strings.dart';
+import '../../../models/user_model.dart';
 
 class SignUpFormWidget extends StatelessWidget {
   const SignUpFormWidget({
@@ -62,8 +63,13 @@ class SignUpFormWidget extends StatelessWidget {
                 onPressed: (){
                   if(_formKey.currentState!.validate()){
                     // SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
-                    SignUpController.instance.phoneAuthentication(controller.phoneNo.text.trim());
-                    Get.to(()=> const OTPScreen());
+                    final user = UserModel(
+                      email: controller.email.text.trim(),
+                      password: controller.password.text.trim(),
+                      fullName: controller.fullName.text.trim(),
+                      phoneNo: controller.phoneNo.text.trim(),
+                    );
+                    SignUpController.instance.createUser(user);
                   }
                 },
                 child: Text(tSign.toUpperCase()),
