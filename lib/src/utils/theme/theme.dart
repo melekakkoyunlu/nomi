@@ -5,9 +5,14 @@ import 'package:demo/src/utils/theme/widget_themes/text_field_theme.dart';
 import 'package:demo/src/utils/theme/widget_themes/text_theme.dart';
 import 'package:flutter/material.dart';
 
-class NomiAppTheme{
+class NomiAppTheme extends ChangeNotifier{
 
-  NomiAppTheme. _();  //makes it private constructor
+  ThemeMode themeMode = ThemeMode.light;
+  ThemeData get theme => themeMode == ThemeMode.light ? lightTheme : darkTheme;
+  void toggleTheme() {
+    themeMode = themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+    notifyListeners();
+  }
 
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,

@@ -6,6 +6,7 @@ import '../../features/map/controllers/map_controller.dart';
 import '../../features/map/models/place.dart';
 import 'package:demo/src/features/map/services/fetch_place_details_service.dart' as FetchService;
 import 'package:demo/src/features/map/services/places_service.dart' as NearbyService;
+import 'package:url_launcher/url_launcher.dart';
 
 class MapWidget extends StatefulWidget {
   final LatLng? userLocation;
@@ -78,7 +79,7 @@ class _MapWidgetState extends State<MapWidget> {
 
   void _openWebsite(String url) async {
     // Add URL launcher functionality here if needed
-    print('Opening website: $url');
+    launch(url);
   }
 
   @override
