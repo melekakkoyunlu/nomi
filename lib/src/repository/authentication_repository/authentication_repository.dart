@@ -1,5 +1,4 @@
 import 'package:demo/src/features/authentication/screens/splash_screen/splash_screen.dart';
-import 'package:demo/src/features/authentication/screens/welcome/welcome_screen.dart';
 import 'package:demo/src/features/map/screens/home/home_screen.dart';
 import 'package:demo/src/repository/authentication_repository/exceptions/signup_email_password_failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -1,8 +1,6 @@
 import 'package:demo/src/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../../../../common_widgets/form/form_header_widget.dart';
 import '../../../../../constants/image_strings.dart';
 import '../../../../../constants/text_strings.dart';

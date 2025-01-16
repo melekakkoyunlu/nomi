@@ -1,8 +1,6 @@
 import 'package:demo/src/features/authentication/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../../../../constants/image_strings.dart';
 import '../../../../../constants/sizes.dart';
 import '../../../../../constants/text_strings.dart';

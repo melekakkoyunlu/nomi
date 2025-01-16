@@ -73,3 +73,8 @@ const String tJoinedAt = "3 January 2025";
 
 /* -- Bookmarks Screen Text -- */
 const String tNoBookmark = "No bookmarks added.";
+
+
+String name = "";
+String number = "";
+String mail = "";

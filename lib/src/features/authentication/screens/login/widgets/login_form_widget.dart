@@ -10,7 +10,7 @@ class LoginFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(LoginController()); // Controller bağlama
+    final controller = Get.put(LoginController());
 
     return Form(
       key: controller.formKey,

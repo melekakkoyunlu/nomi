@@ -8,8 +8,6 @@ import 'package:demo/src/constants/text_strings.dart';
 import 'package:demo/src/features/authentication/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../signup/signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget{
