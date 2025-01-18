@@ -12,8 +12,8 @@ class PlacesService {
     final String url =
         'https://maps.googleapis.com/maps/api/place/nearbysearch/json'
         '?location=${location.latitude},${location.longitude}'
-        '&radius=1500' // Search radius in meters
-        '&type=$type' // Type of place (e.g., restaurant, cafe)
+        '&radius=1500' // search radius (meters)
+        '&type=$type' // type of places
         '&key=$apiKey';
 
     final response = await http.get(Uri.parse(url));

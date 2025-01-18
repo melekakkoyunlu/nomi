@@ -24,7 +24,7 @@ const String tWelcomeSubTitle = "Let's look around!";
 
 /* -- Login Screen Text -- */
 const String tLoginTitle = "Welcome Back,";
-const String tLoginSubTitle = "bisiyok bisiyok bisiyok";
+const String tLoginSubTitle = "bisiyok bisiyok bisiyok";  //find subtitle ???
 const String tRememberMe = "Remember Me?";
 const String tAlreadyHaveAnAccount = "Already have an Account?";
 const String tDontHaveAnAccount = "Don't have an Account?";
@@ -74,7 +74,7 @@ const String tJoinedAt = "3 January 2025";
 /* -- Bookmarks Screen Text -- */
 const String tNoBookmark = "No bookmarks added.";
 
-
+/* -- Temporary Variables -- */
 String name = "";
 String number = "";
 String mail = "";

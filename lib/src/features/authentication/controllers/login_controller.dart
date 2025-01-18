@@ -19,7 +19,6 @@ class LoginController extends GetxController {
           password: passwordController.text.trim(),
         );
 
-        // Giriş başarılı, HomeScreen'e yönlendirme
         Get.off(() => HomeScreen());
       } on FirebaseAuthException catch (e) {
         String errorMessage;

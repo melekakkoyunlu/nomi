@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+// FILTER IS NOT ENABLED FOR NOW
 class FilterOptions {
   List<String> selectedCuisines;
   double selectedDistance;

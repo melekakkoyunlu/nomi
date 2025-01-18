@@ -19,7 +19,7 @@ class WelcomeScreen extends StatelessWidget{
     final controller = Get.put(FadeInAnimationController());
     controller.startAnimation();
 
-    var mediaQuery = MediaQuery.of(context);
+    var mediaQuery = MediaQuery.of(context);       //mediaQuerry ile ekran boyutu al
     var height = mediaQuery.size.height;
     var brightness = mediaQuery.platformBrightness;
     final isDarkMode = brightness == Brightness.dark;

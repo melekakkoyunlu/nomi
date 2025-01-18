@@ -18,7 +18,7 @@ class ForgetPasswordMailScreen extends StatelessWidget{
               padding: const EdgeInsets.all(tDefaultSize),
               child: Column(
                 children: [
-                  const SizedBox(height: tDefaultSize *4 ),
+                  const SizedBox(height: tDefaultSize * 4 ),
                   const FormHeaderWidget(
                     image: tForgetPasswordImage ,
                     title: tForgetPassword,

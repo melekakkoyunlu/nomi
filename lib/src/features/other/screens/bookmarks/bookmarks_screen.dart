@@ -27,3 +27,6 @@ class BookmarksScreen extends StatelessWidget {
     );
   }
 }
+  /* TO DO
+  * MAKE UI BETTER!!!
+  */

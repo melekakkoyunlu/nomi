@@ -12,7 +12,7 @@ class MapWidget extends StatefulWidget {
   final LatLng? userLocation;
   final List<Place> nearbyPlaces;
   final CustomMapController customMapController;
-  final Function(Place) onAddToBookmarks; // Added callback parameter
+  final Function(Place) onAddToBookmarks; // added callback prmtr
 
   const MapWidget({
     required this.customMapController,
@@ -58,7 +58,7 @@ class _MapWidgetState extends State<MapWidget> {
           actions: [
             TextButton(
               onPressed: () {
-                widget.onAddToBookmarks(place); // Use the callback to add bookmark
+                widget.onAddToBookmarks(place); // use callback to add bookmark
                 Navigator.pop(context);
               },
               child: const Text('Add to Bookmarks'),
@@ -78,10 +78,11 @@ class _MapWidgetState extends State<MapWidget> {
   }
 
   void _openWebsite(String url) async {
-    // Add URL launcher functionality here if needed
+    // url launcher
     launch(url);
   }
 
+  //app acildiginda fix konum
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
@@ -103,7 +104,7 @@ class _MapWidgetState extends State<MapWidget> {
 
   List<Marker> _buildMarkers() {
     List<Marker> markers = [];
-
+    //user konum
     if (widget.userLocation != null) {
       markers.add(
         Marker(
@@ -114,7 +115,7 @@ class _MapWidgetState extends State<MapWidget> {
         ),
       );
     }
-
+    //restaurant konum
     for (var place in widget.nearbyPlaces) {
       markers.add(
         Marker(

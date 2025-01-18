@@ -18,7 +18,6 @@ class SignUpController extends GetxController{
 
   final userRepo = Get.put(UserRepository());
 
-  //Call this Function from Design & it will do the rest
   void registerUser(String email, String password){
     AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password);
   }

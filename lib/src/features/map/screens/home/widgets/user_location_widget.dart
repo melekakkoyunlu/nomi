@@ -31,7 +31,7 @@ class _UserLocationWidgetState extends State<UserLocationWidget> {
           userLocation: _userLocation,
           nearbyPlaces: _nearbyPlaces,
           customMapController: _customMapController,
-          onAddToBookmarks: widget.onAddToBookmarks, // Pass callback to MapWidget
+          onAddToBookmarks: widget.onAddToBookmarks, // pass callback to mapWidget
         ),
         if (_isLoading)
           Center(child: CircularProgressIndicator()), // Loading spinner

@@ -9,6 +9,8 @@ class OTPController extends GetxController{
     var isVerified = await AuthenticationRepository.instance.verifyOTP(otp);
     isVerified ? Get.offAll(HomeScreen()): Get.back();
   }
-
-
 }
+
+/* OTP screens are ready , backend will be too
+*  enable billing on firebase console
+* */

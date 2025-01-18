@@ -19,7 +19,7 @@ class LoginFooterWidget extends StatelessWidget {
         const SizedBox(height: tFormHeight -20,),
         SizedBox(
           width: double.infinity,
-          child: OutlinedButton.icon(
+          child: OutlinedButton.icon(                    //sign with google
             icon: Image(image: AssetImage(tGoogleLogo),width: 20.0,height: 20.0,),
             onPressed: (){},
             label: Text(tSignInWithGoogle),

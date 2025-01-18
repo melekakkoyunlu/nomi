@@ -36,15 +36,15 @@ class _HomeScreenState extends State<HomeScreen> {
     _screens = [
       ProfileScreen(),
       UserLocationWidget(
-        onAddToBookmarks: _addToBookmarks, // Pass the add function to UserLocationWidget
+        onAddToBookmarks: _addToBookmarks, // pass add funct to UserLocationWidget
       ),
       BookmarksScreen(
-        bookmarks: _bookmarks, // Share the bookmarks list
+        bookmarks: _bookmarks, // bookmarks list
       ),
     ];
   }
 
-  // Handle bottom navigation bar taps
+  // bottom navigation bar
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
