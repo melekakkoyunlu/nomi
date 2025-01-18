@@ -47,7 +47,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     width: 120,
                     height: 120,
                     child: ClipRRect(
+
                         borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage))),
+
                   ),
                   Positioned(
                     bottom: 0,
@@ -59,6 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: IconButton(onPressed: (){
                         showDialog(
                           context: context,
+
                           barrierDismissible: true,
                           builder: (BuildContext context) {
 
@@ -165,6 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           },
                         );
 
+
                       }, icon: const Icon(
                         LineAwesomeIcons.alternate_pencil,
                         color: Colors.black,
@@ -176,6 +180,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               ),
               const SizedBox(height: 10),
+
               FutureBuilder(
                   future: controller.getUserData(),
                 builder: (context, snapshot) {
@@ -189,6 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         return Text(name, style: Theme.of(context).textTheme.headlineMedium);
                 }
               ),
+
               const SizedBox(height: 20),
 
               /// -- BUTTON
@@ -209,11 +215,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ProfileMenuWidget(title: "Settings", icon: LineAwesomeIcons.cog, onPress: () {
                 showDialog(
                   context: context,
+
                   barrierDismissible: true,
                   builder: (BuildContext context) {
                     return Center(
                         child: Material(
                         color: Colors.transparent,
+
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.8,
                         padding: EdgeInsets.all(20),
@@ -233,6 +241,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             Text(
                               "Settings",
+
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),
                             ),
                             SizedBox(height: 5),
@@ -240,6 +249,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               title: const Text('Dark Mode'),
                               trailing: Switch(value: context.watch<NomiAppTheme>().themeMode == ThemeMode.dark, onChanged: (v) => context.read<NomiAppTheme>().toggleTheme()),
                             ),
+
 
                             ElevatedButton(
                               onPressed: () {
@@ -251,14 +261,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
 
+
                         ), );
+
                   },
                 );
               }),
               ProfileMenuWidget(title: "Information", icon: LineAwesomeIcons.info, onPress: () {
                 showDialog(
                   context: context,
+
                   barrierDismissible: true,
+
                   builder: (BuildContext context) {
                     return Center(
                       child: Container(
@@ -283,21 +297,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               width: 120,
                               height: 120,
                               child: ClipRRect(
+
                                   borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage))),
                             ),
                             SizedBox(height: 10),
                             Text(
                               name,
+
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 10),
                             Text(
+
                               mail,
+
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 10),
                             Text(
+
                               number,
+
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 20),

@@ -25,9 +25,6 @@ String tProfileImage5 = "assets/images/avatar5.png";
 String tProfileImage6 = "assets/images/avatar6.png";
 String tProfileImage = tProfileImage1;
 
-
-
-
 /* -- Bookmarks Screen Images -- */
 
 

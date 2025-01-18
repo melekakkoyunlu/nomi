@@ -10,7 +10,10 @@ class LoginFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(LoginController());
+
+    final controller = Get.put(LoginController()); // Controller binding
+    final isPasswordVisible = false.obs; // Observable boolean for password visibility
+
 
     return Form(
       key: controller.formKey,
@@ -38,15 +41,22 @@ class LoginFormWidget extends StatelessWidget {
                 },
               ),
               const SizedBox(height: tFormHeight - 20),
-              TextFormField(
+              Obx(() => TextFormField(
                 controller: controller.passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.lock_outline),
+                obscureText: !isPasswordVisible.value,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.lock_outline),
                   labelText: tPassword,
                   hintText: tPassword,
-                  border: OutlineInputBorder(),
-                  suffixIcon: Icon(Icons.remove_red_eye_sharp),
+                  border: const OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      isPasswordVisible.value = !isPasswordVisible.value;
+                    },
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -56,7 +66,7 @@ class LoginFormWidget extends StatelessWidget {
                   }
                   return null;
                 },
-              ),
+              )),
               const SizedBox(height: tFormHeight - 20),
               // --Forget Password Button
               Align(
@@ -92,3 +102,4 @@ class LoginFormWidget extends StatelessWidget {
     );
   }
 }
+

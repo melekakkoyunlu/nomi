@@ -22,6 +22,7 @@ class UpdateProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(tDefaultSize),
+
           child: FutureBuilder(
             future: controller.getUserData(),
             builder: (context, snapshot){
@@ -56,6 +57,7 @@ class UpdateProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ],
+
                       ),
                       const SizedBox(height: 50),
 
