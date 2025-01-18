@@ -5,15 +5,18 @@ import 'package:demo/src/utils/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then((value)=> Get.put(AuthenticationRepository()));
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => NomiAppTheme()),
+  ],
+    child: const MyApp(),
+  )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,15 +25,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      theme:NomiAppTheme.lightTheme,
-      darkTheme: NomiAppTheme.darkTheme,
-      themeMode:ThemeMode.system,
+    return Consumer<NomiAppTheme>(
+    builder: (BuildContext context, viewModel, child) => GetMaterialApp(
+      theme:viewModel.theme,
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: 500),
       home: SplashScreen(),
-    );
+    ),);
   }
 }
 

@@ -11,26 +11,24 @@ class UserRepository extends GetxController {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+
+
   Future<void> createUser(String email, String password, String fullName, String phoneNo) async {
     try {
-      // Firebase Authentication ile kullanıcı oluştur
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      // Kullanıcı başarıyla oluşturulduktan sonra Firestore'a kaydet
       final user = UserModel(
-        id: userCredential.user!.uid, // Firestore'da kullanıcı kimliği olarak kullanılacak
+        id: userCredential.user!.uid,
         email: email,
         fullName: fullName,
         phoneNo: phoneNo,
-        password: password, // Şifreyi sadece örnek olarak ekliyoruz, gerçek uygulamalarda bu şekilde saklanmamalı
-      );
+        password: password,  );
 
       await _db.collection("Users").doc(user.id).set(user.toJson());
 
-      // Başarılı mesaj
       Get.snackbar(
         "Success",
         "Your account has been created.",
@@ -39,7 +37,6 @@ class UserRepository extends GetxController {
         colorText: Colors.green,
       );
     } on FirebaseAuthException catch (e) {
-      // Authentication hataları
       String errorMessage;
       switch (e.code) {
         case 'email-already-in-use':
@@ -63,7 +60,6 @@ class UserRepository extends GetxController {
         colorText: Colors.red,
       );
     } catch (e) {
-      // Genel hatalar
       Get.snackbar(
         "Error",
         "Something went wrong. Please try again.",
@@ -74,4 +70,15 @@ class UserRepository extends GetxController {
       print("Error: $e");
     }
   }
+  Future<UserModel> getUserDetails(String email) async {
+    final snapshot = await _db.collection("Users").where("Email", isEqualTo: email).get();
+    final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
+    return userData;
+  }
+
+  Future<void> updateUserRecord(UserModel user) async {
+    final currentUserId = _auth.currentUser?.uid;
+    await _db.collection("Users").doc(currentUserId).update(user.toJson());
+  }
+
 }

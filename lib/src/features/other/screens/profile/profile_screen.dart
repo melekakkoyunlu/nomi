@@ -1,22 +1,33 @@
+import 'package:demo/src/features/authentication/controllers/profile_controller.dart';
+import 'package:demo/src/features/authentication/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import '../../../../constants/image_strings.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/text_strings.dart';
 import '../../../../constants/sizes.dart';
 import 'widgets/profile_menu.dart';
 import 'package:demo/src/utils/theme/theme.dart';
-import 'package:flutter/material.dart';
 import 'update_profile_screen.dart';
 import 'package:get/get.dart';
 import '../../../../repository/authentication_repository/authentication_repository.dart';
 
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProfileController());
+    controller.getUserData();
+
+    int? selectedIndex;
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +40,6 @@ class ProfileScreen extends StatelessWidget {
           padding: const EdgeInsets.all(tDefaultSize),
           child: Column(
             children: [
-
               /// -- IMAGE
               Stack(
                 children: [
@@ -37,7 +47,9 @@ class ProfileScreen extends StatelessWidget {
                     width: 120,
                     height: 120,
                     child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage2))),
+
+                        borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage))),
+
                   ),
                   Positioned(
                     bottom: 0,
@@ -49,110 +61,114 @@ class ProfileScreen extends StatelessWidget {
                       child: IconButton(onPressed: (){
                         showDialog(
                           context: context,
-                          barrierDismissible: true, // Tıklayınca kapatılabilir
+
+                          barrierDismissible: true,
                           builder: (BuildContext context) {
-                            return Center(
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.8,
-                                padding: EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black26,
-                                      blurRadius: 10,
-                                      offset: Offset(0, 4),
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      "Modern Popup",
-                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(height: 10),
-                                    Text(
-                                      "Bu, tamamen özelleştirilmiş bir popup.",
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
 
-                                          width: 120,
-                                          height: 120,
-                                          child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage1))),
-                                        ),
-                                        SizedBox(width: 20),
-                                        SizedBox(
-                                          width: 120,
-                                          height: 120,
-                                          child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage2))),
+                            return StatefulBuilder(
+                              builder: (context, setStatePopup) {
+                                return Center(
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width * 0.9,
+                                    padding: EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black26,
+                                          blurRadius: 10,
+                                          offset: Offset(0, 4),
                                         ),
                                       ],
                                     ),
-
-                                    SizedBox(height: 20),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        SizedBox(
-
-                                          width: 120,
-                                          height: 120,
-                                          child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage3))),
+                                        Text(
+                                          "Make Your Choice",
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
                                         ),
-                                        SizedBox(width: 20),
-                                        SizedBox(
-                                          width: 120,
-                                          height: 120,
-                                          child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage4))),
+                                        SizedBox(height: 20),
+                                        GridView.builder(
+                                          shrinkWrap: true,
+                                          physics: NeverScrollableScrollPhysics(),
+                                          itemCount: 6,
+                                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            crossAxisSpacing: 20,
+                                            mainAxisSpacing: 20,
+                                          ),
+                                          itemBuilder: (context, index) {
+                                            final List<String> images = [
+                                              tProfileImage1,
+                                              tProfileImage2,
+                                              tProfileImage3,
+                                              tProfileImage4,
+                                              tProfileImage5,
+                                              tProfileImage6,
+                                            ];
+                                            selectedIndex = images.indexOf(tProfileImage);
+                                            return GestureDetector(
+                                              onTap: () {
+                                                setStatePopup(() {
+                                                  selectedIndex = index;
+                                                });
+
+                                                setState(() {
+                                                  tProfileImage = images[index];
+                                                });
+
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                    color: selectedIndex == index
+                                                        ? Colors.red
+                                                        : Colors.black,
+                                                    width: 3,
+                                                  ),
+                                                ),
+                                                child: ClipRRect(
+                                                  borderRadius: BorderRadius.circular(100),
+                                                  child: Image.asset(
+                                                    images[index],
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+
+                                        SizedBox(height: 20),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.redAccent,
+                                          ),
+                                          child: Text(
+                                            "Close",
+                                            style: TextStyle(color: Colors.white),
+                                          ),
                                         ),
                                       ],
                                     ),
-
-                                    SizedBox(height: 20),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
-
-                                          width: 120,
-                                          height: 120,
-                                          child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage5))),
-                                        ),
-                                        SizedBox(width: 20),
-                                        SizedBox(
-                                          width: 120,
-                                          height: 120,
-                                          child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage6))),
-                                        ),
-                                      ],
-                                    ),
-
-                                    SizedBox(height: 20),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text("Kapat"),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                                  ),
+                                );
+                              },
                             );
                           },
                         );
+
+
                       }, icon: const Icon(
                         LineAwesomeIcons.alternate_pencil,
                         color: Colors.black,
@@ -164,14 +180,28 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              Text(tProfileHeading, style: Theme.of(context).textTheme.headlineMedium),
+
+              FutureBuilder(
+                  future: controller.getUserData(),
+                builder: (context, snapshot) {
+                  if(snapshot.connectionState == ConnectionState.done) {
+                      if(snapshot.hasData) {
+                        UserModel userData = snapshot.data as UserModel;
+                        name = userData.fullName;
+                        mail = userData.email;
+                        number = userData.phoneNo;
+                      }}
+                        return Text(name, style: Theme.of(context).textTheme.headlineMedium);
+                }
+              ),
+
               const SizedBox(height: 20),
 
               /// -- BUTTON
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
-                  onPressed: () => Get.to(() => const UpdateProfileScreen()),
+                  onPressed: () => Get.to(() => UpdateProfileScreen()),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: tPrimaryColor, side: BorderSide.none, shape: const StadiumBorder()),
                   child: const Text(tEditProfile, style: TextStyle(color: tDarkColor)),
@@ -185,9 +215,13 @@ class ProfileScreen extends StatelessWidget {
               ProfileMenuWidget(title: "Settings", icon: LineAwesomeIcons.cog, onPress: () {
                 showDialog(
                   context: context,
-                  barrierDismissible: true, // Tıklayınca kapatılabilir
+
+                  barrierDismissible: true,
                   builder: (BuildContext context) {
                     return Center(
+                        child: Material(
+                        color: Colors.transparent,
+
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.8,
                         padding: EdgeInsets.all(20),
@@ -207,21 +241,16 @@ class ProfileScreen extends StatelessWidget {
                           children: [
                             Text(
                               "Settings",
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),
                             ),
                             SizedBox(height: 5),
+                            ListTile(
+                              title: const Text('Dark Mode'),
+                              trailing: Switch(value: context.watch<NomiAppTheme>().themeMode == ThemeMode.dark, onChanged: (v) => context.read<NomiAppTheme>().toggleTheme()),
+                            ),
 
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              ListTile(
-                                title: const Text('Dark Mode'),
-                                trailing: Switch(value: true, onChanged: (v){}),
-                              ),
-                            ],
-                          ),
 
-                            SizedBox(height: 20),
                             ElevatedButton(
                               onPressed: () {
                                 Navigator.of(context).pop();
@@ -231,14 +260,19 @@ class ProfileScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                    );
+
+
+                        ), );
+
                   },
                 );
               }),
               ProfileMenuWidget(title: "Information", icon: LineAwesomeIcons.info, onPress: () {
                 showDialog(
                   context: context,
-                  barrierDismissible: true, // Tıklayınca kapatılabilir
+
+                  barrierDismissible: true,
+
                   builder: (BuildContext context) {
                     return Center(
                       child: Container(
@@ -263,21 +297,27 @@ class ProfileScreen extends StatelessWidget {
                               width: 120,
                               height: 120,
                               child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage1))),
+
+                                  borderRadius: BorderRadius.circular(100), child: Image(image: AssetImage(tProfileImage))),
                             ),
                             SizedBox(height: 10),
                             Text(
-                              "Nomi Nomi",
+                              name,
+
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 10),
                             Text(
-                              "nomi@nomi.com",
+
+                              mail,
+
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 10),
                             Text(
-                              "+9055555555555",
+
+                              number,
+
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 20),

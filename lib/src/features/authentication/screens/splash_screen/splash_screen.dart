@@ -3,15 +3,13 @@ import 'package:demo/src/constants/colors.dart';
 import 'package:demo/src/constants/sizes.dart';
 import 'package:demo/src/constants/text_strings.dart';
 import 'package:demo/src/common_widgets/fade_in_animation/fade_in_animation_controllers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import '../../../../common_widgets/fade_in_animation/animation_design.dart';
 import '../../../../constants/image_strings.dart';
 
 class SplashScreen extends StatelessWidget {
-   SplashScreen({Key? key}) : super(key: key);
+   const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

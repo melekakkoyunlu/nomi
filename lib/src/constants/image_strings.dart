@@ -23,7 +23,7 @@ String tProfileImage3 = "assets/images/avatar3.png";
 String tProfileImage4 = "assets/images/avatar4.png";
 String tProfileImage5 = "assets/images/avatar5.png";
 String tProfileImage6 = "assets/images/avatar6.png";
-
+String tProfileImage = tProfileImage1;
 
 /* -- Bookmarks Screen Images -- */
 

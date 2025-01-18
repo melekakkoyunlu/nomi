@@ -10,8 +10,10 @@ class LoginFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final controller = Get.put(LoginController()); // Controller binding
     final isPasswordVisible = false.obs; // Observable boolean for password visibility
+
 
     return Form(
       key: controller.formKey,

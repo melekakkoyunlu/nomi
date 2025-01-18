@@ -3,7 +3,7 @@ import 'package:demo/src/features/map/screens/home/widgets/user_location_widget.
 import 'package:demo/src/features/other/screens/bookmarks/bookmarks_screen.dart';
 import 'package:demo/src/features/other/screens/profile/profile_screen.dart';
 import 'package:demo/src/features/map/screens/home/widgets/bottom_navigation_bar_widget.dart';
-import 'package:latlong2/latlong.dart';
+
 
 import '../../models/place.dart'; // Ensure this import is available
 
@@ -54,6 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(''),
+      ),
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBarWidget(
         selectedIndex: _selectedIndex,

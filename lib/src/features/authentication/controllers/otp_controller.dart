@@ -1,4 +1,3 @@
-
 import 'package:demo/src/features/map/screens/home/home_screen.dart';
 import 'package:demo/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:get/get.dart';
